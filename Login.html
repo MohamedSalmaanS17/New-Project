@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: 100px auto; text-align: center; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+        button { padding: 8px 16px; cursor: pointer; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p class="error" id="loginError"></p>
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+
+            if (storedUser && storedUser.email === email && storedUser.password === password) {
+                alert("Login successful!");
+                window.location.href = 'todo.html';
+            } else {
+                document.getElementById('loginError').innerText = "Invalid email or password";
+            }
+        }
+    </script>
+</body>
+</html>

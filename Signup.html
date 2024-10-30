@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: 100px auto; text-align: center; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+        button { padding: 8px 16px; cursor: pointer; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <input type="email" id="signupEmail" placeholder="Email">
+        <input type="password" id="signupPassword" placeholder="Password">
+        <button onclick="signup()">Sign Up</button>
+        <p class="error" id="signupError"></p>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <script>
+        function signup() {
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (email && password) {
+                const user = { email, password };
+                localStorage.setItem('user', JSON.stringify(user));
+                alert("Signup successful!");
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('signupError').innerText = "Please fill in all fields";
+            }
+        }
+    </script>
+</body>
+</html>
